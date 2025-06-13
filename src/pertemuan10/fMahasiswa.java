@@ -69,6 +69,7 @@ public class fMahasiswa extends javax.swing.JFrame {
         txPRODI = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tmhs = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,6 +110,8 @@ public class fMahasiswa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tmhs);
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +133,8 @@ public class fMahasiswa extends javax.swing.JFrame {
                             .addComponent(txNIM)
                             .addComponent(txNAMA)
                             .addComponent(txJK)
-                            .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,7 +143,7 @@ public class fMahasiswa extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -156,7 +160,9 @@ public class fMahasiswa extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
@@ -203,6 +209,7 @@ public class fMahasiswa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
