@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -218,8 +219,15 @@ public class fMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cTUTUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTUTUPActionPerformed
-        
-        System.exit(0);
+        int opsi = JOptionPane.showOptionDialog(this,
+                    "Yakin akan Menutup Form?", 
+                    "Konfirmasi Tutup Form", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, 
+                    null, null, null);
+        if(opsi == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
         
     }//GEN-LAST:event_cTUTUPActionPerformed
 
@@ -229,6 +237,8 @@ public class fMahasiswa extends javax.swing.JFrame {
         String jkx = (tmhs.getValueAt(tmhs.getSelectedRow(),2).toString().equals("L"))?"Laki-Laki":"Perempuan";
         txJK.setText(jkx);
         txPRODI.setText(tmhs.getValueAt(tmhs.getSelectedRow(),3).toString());
+        cUBAH.setEnabled(true);
+        cHAPUS.setEnabled(true);
     }//GEN-LAST:event_tmhsMouseClicked
 
     /**
