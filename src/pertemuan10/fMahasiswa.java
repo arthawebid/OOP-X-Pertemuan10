@@ -28,8 +28,22 @@ public class fMahasiswa extends javax.swing.JFrame {
         dtm.addColumn("prodi");
         
         lsDtMhs();
-        
-        
+        fieldEnabled(false);
+        tombol(false);
+        cBARU.setEnabled(true);
+        cTUTUP.setEnabled(true);
+    }
+    private void fieldEnabled(boolean opsi){
+        txNIM.setEditable(opsi);
+        txNAMA.setEditable(opsi);
+        txJK.setEditable(opsi);
+        txPRODI.setEditable(opsi);
+    }
+    private void tombol(boolean opsi){
+        cBARU.setEnabled(opsi);
+        cUBAH.setEnabled(opsi);
+        cHAPUS.setEnabled(opsi);
+        cTUTUP.setEnabled(opsi);
     }
     private void lsDtMhs() throws SQLException{
         Connection cnn = koneksi();
@@ -41,9 +55,9 @@ public class fMahasiswa extends javax.swing.JFrame {
                 Object[] dta = new Object[4];
                     dta[0] = rs.getString("NAMA");
                     dta[1] = rs.getString("NIM");
-                    dta[2] = rs.getString("PRODI");
-                    dta[3] = rs.getString("JKEL");
-                    
+                    dta[2] = rs.getString("JKEL");
+                    dta[3] = rs.getString("PRODI");
+              
                 dtm.addRow(dta);
             }
         }
@@ -69,7 +83,10 @@ public class fMahasiswa extends javax.swing.JFrame {
         txPRODI = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tmhs = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        cUBAH = new javax.swing.JButton();
+        cHAPUS = new javax.swing.JButton();
+        cBARU = new javax.swing.JButton();
+        cTUTUP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -110,7 +127,17 @@ public class fMahasiswa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tmhs);
 
-        jButton1.setText("jButton1");
+        cUBAH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cUBAH.setText("Ubah");
+
+        cHAPUS.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cHAPUS.setText("Hapus");
+
+        cBARU.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cBARU.setText("Baru");
+
+        cTUTUP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cTUTUP.setText("Tutup");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,8 +161,15 @@ public class fMahasiswa extends javax.swing.JFrame {
                             .addComponent(txNAMA)
                             .addComponent(txJK)
                             .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cBARU, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cUBAH, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cHAPUS, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cTUTUP, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,8 +196,12 @@ public class fMahasiswa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txPRODI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cBARU, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cUBAH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cHAPUS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cTUTUP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,7 +247,10 @@ public class fMahasiswa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cBARU;
+    private javax.swing.JButton cHAPUS;
+    private javax.swing.JButton cTUTUP;
+    private javax.swing.JButton cUBAH;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
