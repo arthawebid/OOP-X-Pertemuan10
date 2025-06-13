@@ -125,6 +125,11 @@ public class fMahasiswa extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tmhs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tmhsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tmhs);
 
         cUBAH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -138,6 +143,11 @@ public class fMahasiswa extends javax.swing.JFrame {
 
         cTUTUP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cTUTUP.setText("Tutup");
+        cTUTUP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cTUTUPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,6 +216,20 @@ public class fMahasiswa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cTUTUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTUTUPActionPerformed
+        
+        System.exit(0);
+        
+    }//GEN-LAST:event_cTUTUPActionPerformed
+
+    private void tmhsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmhsMouseClicked
+        txNIM.setText(tmhs.getValueAt(tmhs.getSelectedRow(),1).toString());
+        txNAMA.setText(tmhs.getValueAt(tmhs.getSelectedRow(),0).toString());
+        String jkx = (tmhs.getValueAt(tmhs.getSelectedRow(),2).toString().equals("L"))?"Laki-Laki":"Perempuan";
+        txJK.setText(jkx);
+        txPRODI.setText(tmhs.getValueAt(tmhs.getSelectedRow(),3).toString());
+    }//GEN-LAST:event_tmhsMouseClicked
 
     /**
      * @param args the command line arguments
