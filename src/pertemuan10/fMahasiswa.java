@@ -46,8 +46,18 @@ public class fMahasiswa extends javax.swing.JFrame {
         cHAPUS.setEnabled(opsi);
         cTUTUP.setEnabled(opsi);
     }
+    private void clearForm(){
+        txNIM.setText("");
+        txNAMA.setText("");
+        txPRODI.setText("");
+        txJK.setText("");
+    }
+    
     private void lsDtMhs() throws SQLException{
         Connection cnn = koneksi();
+        
+        dtm.getDataVector().removeAllElements();
+        dtm.fireTableDataChanged();
         
         if( !cnn.isClosed() ){
             PreparedStatement ps = cnn.prepareStatement("SELECT * FROM mhs;");
@@ -61,8 +71,42 @@ public class fMahasiswa extends javax.swing.JFrame {
               
                 dtm.addRow(dta);
             }
+            cnn.close();
         }
-    }    
+    }
+    private void storeData() throws SQLException{
+        Connection cnn = koneksi();
+        if(!cnn.isClosed()){
+            PreparedStatement ps = cnn.prepareStatement("INSERT INTO mhs(NIM,NAMA,PRODI,JKEL) VALUES(?,?,?,?);");
+            ps.setString(1, txNIM.getText() );
+            ps.setString(2, txNAMA.getText() );
+            ps.setString(3, txPRODI.getText() );
+            ps.setString(4, txJK.getText() );
+            ps.executeUpdate();
+            cnn.close();
+        }
+    }
+    private void updateData() throws SQLException{
+        Connection cnn = koneksi();
+        if(!cnn.isClosed()){
+            PreparedStatement ps = cnn.prepareStatement("UPDATE mhs SET NAMA=?,PRODI=?,JKEL=? WHERE NIM=?;");
+            ps.setString(1, txNAMA.getText() );
+            ps.setString(2, txPRODI.getText() );
+            ps.setString(3, txJK.getText() );
+            ps.setString(4, txNIM.getText() );
+            ps.executeUpdate();
+            cnn.close();
+        }
+    }
+    private void destoryData() throws SQLException{
+        Connection cnn = koneksi();
+        if(!cnn.isClosed()){
+            PreparedStatement ps = cnn.prepareStatement("DELETE FROM mhs WHERE NIM=?;");
+            ps.setString(1, txNIM.getText() );
+            ps.executeUpdate();
+            cnn.close();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,6 +185,11 @@ public class fMahasiswa extends javax.swing.JFrame {
 
         cBARU.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cBARU.setText("Baru");
+        cBARU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBARUActionPerformed(evt);
+            }
+        });
 
         cTUTUP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cTUTUP.setText("Tutup");
@@ -219,6 +268,7 @@ public class fMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cTUTUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTUTUPActionPerformed
+        
         int opsi = JOptionPane.showOptionDialog(this,
                     "Yakin akan Menutup Form?", 
                     "Konfirmasi Tutup Form", 
@@ -240,6 +290,30 @@ public class fMahasiswa extends javax.swing.JFrame {
         cUBAH.setEnabled(true);
         cHAPUS.setEnabled(true);
     }//GEN-LAST:event_tmhsMouseClicked
+
+    private void cBARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBARUActionPerformed
+        if(cBARU.getText().equals("Baru")){
+            cBARU.setText("Simpan");
+            cTUTUP.setText("Batal");
+            cUBAH.setEnabled(false);
+            cHAPUS.setEnabled(false);
+            clearForm();
+            fieldEnabled(true);
+        }else{
+            if(!txNIM.getText().equals("")){
+                try {
+                    storeData();
+                    lsDtMhs();
+                } catch (SQLException ex) {
+                    Logger.getLogger(fMahasiswa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            cBARU.setText("Baru");
+            cTUTUP.setText("Tutup");
+            clearForm();
+            fieldEnabled(false);
+        }
+    }//GEN-LAST:event_cBARUActionPerformed
 
     /**
      * @param args the command line arguments
