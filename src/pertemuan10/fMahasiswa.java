@@ -179,9 +179,19 @@ public class fMahasiswa extends javax.swing.JFrame {
 
         cUBAH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cUBAH.setText("Ubah");
+        cUBAH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cUBAHActionPerformed(evt);
+            }
+        });
 
         cHAPUS.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cHAPUS.setText("Hapus");
+        cHAPUS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cHAPUSActionPerformed(evt);
+            }
+        });
 
         cBARU.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cBARU.setText("Baru");
@@ -268,17 +278,24 @@ public class fMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cTUTUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTUTUPActionPerformed
-        
-        int opsi = JOptionPane.showOptionDialog(this,
-                    "Yakin akan Menutup Form?", 
-                    "Konfirmasi Tutup Form", 
-                    JOptionPane.YES_NO_OPTION, 
-                    JOptionPane.QUESTION_MESSAGE, 
-                    null, null, null);
-        if(opsi == JOptionPane.YES_OPTION){
-            System.exit(0);
+    
+        if(cTUTUP.getText().equals("Tutup")){
+            int opsi = JOptionPane.showOptionDialog(this,
+                        "Yakin akan Menutup Form?", 
+                        "Konfirmasi Tutup Form", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.QUESTION_MESSAGE, 
+                        null, null, null);
+            if(opsi == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
+        }else{
+            cTUTUP.setText("Tutup");
+            cBARU.setText("Baru");
+            cUBAH.setText("Ubah");
+            
+            fieldEnabled(false);
         }
-        
     }//GEN-LAST:event_cTUTUPActionPerformed
 
     private void tmhsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmhsMouseClicked
@@ -314,6 +331,61 @@ public class fMahasiswa extends javax.swing.JFrame {
             fieldEnabled(false);
         }
     }//GEN-LAST:event_cBARUActionPerformed
+
+    private void cHAPUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cHAPUSActionPerformed
+        
+        int jwb = JOptionPane.showOptionDialog(
+                this, 
+                "Yakin akan menghapus data "+txNIM.getText()+"?", 
+                "Konfirmasi Hapus Data", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE , 
+                null, null, null);
+        
+        if(jwb == JOptionPane.YES_OPTION ){
+            try {
+                destoryData();
+                lsDtMhs();
+                clearForm();
+                cUBAH.setEnabled(false);
+                cHAPUS.setEnabled(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(fMahasiswa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_cHAPUSActionPerformed
+
+    private void cUBAHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cUBAHActionPerformed
+        
+        if(cUBAH.getText().equals("Ubah")){
+            cUBAH.setText("Simpan");
+            cTUTUP.setText("Batal");
+            
+            cBARU.setEnabled(false);
+            cHAPUS.setEnabled(false);
+            fieldEnabled(true);
+            txNIM.setEditable(false);
+            
+        }else{
+            
+            try {
+                updateData();
+                lsDtMhs();
+                clearForm();
+                fieldEnabled(false);
+                
+                cUBAH.setText("Ubah");
+                cTUTUP.setText("Tutup");
+                cBARU.setEnabled(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(fMahasiswa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_cUBAHActionPerformed
 
     /**
      * @param args the command line arguments
